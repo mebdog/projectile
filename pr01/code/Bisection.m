@@ -1,4 +1,4 @@
-function p = Bisecton(xT,yT)
+function p = Bisection(xT,yT)
     a = 0;
     b = pi/2;
     p = 0;
