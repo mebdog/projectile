@@ -1,8 +1,4 @@
 function obs = Sensors
-    n = randi(10);
-    fprintf('Locating %d attractors/repulsors.\n',n)
-    str = randi([-10,10],n,1);
-    xi = randi(2000,n,1);
-    yi = randi(1500,n,1);
-    obs = [str,xi,yi;zeros(10-n,3)];
+    obs = [ +1e+06, 400, 375;
+                  -1e+06, 800, 600];
 end
