@@ -1,3 +1,7 @@
+% This program finds an angle to shoot a projectile at a target.
+% Connor Horn and Barak Morris
+% 3/29/22
+% APPM 3050, Project 1
 v0 = 1500; % m/s
 theta = pi/4; % radians
 y0 = [0,0,v0,theta]; % x, y, v, theta
