@@ -1,3 +1,8 @@
+% This function takes a theta and returns whether it was an overshoot or
+% not.
+% Connor Horn and Barak Morris
+% 4/1/22
+% APPM 3050, Project 1
 function isovershoot =  Distance(xT,yT,theta)
     v0 = 1500;
     y0 = [0,0,v0,theta]; %intial conditions

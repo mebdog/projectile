@@ -1,5 +1,10 @@
+% This program arcs through theta in increments of .01 and graphs the
+% projectile path to determine where you can hide.
+% Connor Horn and Barak Morris
+% 4/1/22
+% APPM 3050, Project 1
 theta = .01;
-tspan = [0,9999];
+tspan = [0,15];
 options = odeset('Events', @event_hide);
 
 struct = Sensors();
@@ -20,4 +25,8 @@ while theta < pi/2
     plot(Y(:,1),Y(:,2))
     hold on;
 end
+xlabel("x (m)")
+ylabel("y (m)")
+title("Attractor at (700,500) Repulsor at (400,800)")
+
 
