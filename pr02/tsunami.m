@@ -26,8 +26,18 @@ for t = 1:50
         for i = 1:n
             if i == 1
                 uFut(i,j) = leftBoundary(t, deltaT);
-            elseif i == n || j == 1 || j == n
-                uFut(i,j) = 0;
+            % Corner Cases
+            elseif i == n && j == 1
+                uFut(i,j) = (2-4*lam)*uCur(i,j) + lam*(uCur(i-1,j) + uCur(i,j) + uCur(i,j) + uCur(i,j+1)) - uPast(i,j);
+            elseif i == n && j == n
+                uFut(i,j) = (2-4*lam)*uCur(i,j) + lam*(uCur(i-1,j) + uCur(i,j) + uCur(i,j-1) + uCur(i,j)) - uPast(i,j);
+            % Edge Cases
+            elseif i == n
+                uFut(i,j) = (2-4*lam)*uCur(i,j) + lam*(uCur(i-1,j) + uCur(i,j) + uCur(i,j-1) + uCur(i,j+1)) - uPast(i,j);
+            elseif j == n
+                uFut(i,j) = (2-4*lam)*uCur(i,j) + lam*(uCur(i-1,j) + uCur(i+1,j) + uCur(i,j-1) + uCur(i,j)) - uPast(i,j);
+            elseif j == 1
+                uFut(i,j) = (2-4*lam)*uCur(i,j) + lam*(uCur(i-1,j) + uCur(i+1,j) + uCur(i,j) + uCur(i,j+1)) - uPast(i,j);
             else
                 uFut(i,j) = (2-4*lam)*uCur(i,j) + lam*(uCur(i-1,j) + uCur(i+1,j) + uCur(i,j-1) + uCur(i,j+1)) - uPast(i,j);
             end
