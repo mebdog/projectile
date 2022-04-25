@@ -1,3 +1,6 @@
+load('AKWaterColormap','AKWaterColormap')
+set(gcf,'Colormap',AKWaterColormap)
+
 deltaX = .01;
 deltaT = .01;
 c = 1;
@@ -5,7 +8,8 @@ lam = (c*deltaT/deltaX)^2;
 alpha = 0;
 beta = 1;
 gamma = 0;
-
+kk = [.5,.8,.5,.5];
+ss = [1000,1000,1000];
 nFrames = 400;
 
 xLeft = 0;
@@ -19,9 +23,12 @@ uPast = zeros(n,n);
 uCur = zeros(n,n);
 uFut = zeros(n,n);
 
-mesh(x,y,uCur);
+surfl(x,y,uCur,ss,kk), xlabel('X axis'), ylabel('Y axis'),
+                 title('Wave'), axis([0 4 0 4 -1 1]),
+                 shading interp
+
 drawnow
-for t = 1:50
+for t = 1:500
     for j = 1:n
         for i = 1:n
             if i == 1
@@ -43,10 +50,10 @@ for t = 1:50
             end
         end
     end
-    
-    mesh(x,y,uCur),xlabel('X axis'), ylabel('Y axis');
+    surfl(x,y,uCur,ss,kk), xlabel('X axis'), ylabel('Y axis'),
+         title('Wave'), axis([0 4 0 4 -1 1]),
+         shading interp
     drawnow
-
     uPast = uCur;
     uCur = uFut;
     disp(uCur(2,2));
