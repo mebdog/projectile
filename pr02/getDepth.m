@@ -1,3 +1,9 @@
+% This script returns the depth and the partial derivative of the depth
+% with respect to our x and y values
+% Connor Horn and Barak Morris
+% 4/27/22
+% APPM 3050, Project 2
+
 function [h, hx, hy] = getDepth(x,y)
     [X,Y] = meshgrid(x,y);
     X = X';
