@@ -8,7 +8,7 @@ set(gcf,'Colormap',AKWaterColormap)
 
 deltaX = .01;
 deltaT = .01;
-c = .5;
+c = .25;
 lam = (c*deltaT/deltaX)^2;
 
 nFrames = 1000;
@@ -41,7 +41,7 @@ drawnow
 for t = 1:nFrames
     for j = 1:n
         for i = 1:n
-            if j == 1 && ( t < 0.5/deltaT )
+            if i == 1 && ( t < 0.5/deltaT )
                 uFut(i,j) = leftBoundary(t, deltaT);
             % Corner Cases
             elseif i == 1 && j == 1
@@ -100,11 +100,12 @@ for t = 1:nFrames
                             constantRight(i,j)*uCur(i,j+1) + ...
                             constantCurrent(i,j)*uCur(i,j) - uPast(i,j);
             end
+            % Bounds for box
             if uFut(i,j) < 0
                 uFut(i,j) = 0;
             end
-            if abs(uFut(i,j) - uCur(i,j)) > .5
-                uFut(i,j) = .9*uFut(i,j);
+            if uFut(i,j) > 3
+                uFut(i,j) = 3;
             end
         end
     end
