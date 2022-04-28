@@ -1,3 +1,11 @@
+% This script simulates a wave with non-uniform depth
+% Connor Horn and Barak Morris
+% 4/27/22
+% APPM 3050, Project 2
+
+load('AKWaterColormap','AKWaterColormap')
+set(gcf,'Colormap',AKWaterColormap)
+
 deltaX = .01;
 deltaT = .01;
 c = 1;
@@ -23,7 +31,11 @@ constantLeft = lam*(h-hy*deltaX/2); %u(i,j-1)
 constantRight = lam*(h+hy*deltaX/2);%u(i,j+1)
 constantCurrent = 2-4*lam*h; %u(i,j)
 
-mesh(x,y,uCur);
+kk = [.5,.8,.5,.5];
+ss = [1000,1000,1000];
+surfl(x,y,uCur,ss,kk), xlabel('X axis'), ylabel('Y axis'),
+                 title('Wave'), axis([0 4 0 4 -1 1]),
+                 shading interp
 drawnow
 
 for t = 1:nFrames
@@ -67,7 +79,9 @@ for t = 1:nFrames
         end
     end
     
-    mesh(x,y,uCur),xlabel('X axis'), ylabel('Y axis');
+    surfl(x,y,uCur,ss,kk), xlabel('X axis'), ylabel('Y axis'),
+                 title('Wave'), axis([0 4 0 4 -1 1]),
+                 shading interp
     drawnow
     uPast = uCur;
     uCur = uFut;
